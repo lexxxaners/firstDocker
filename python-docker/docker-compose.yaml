@@ -1,0 +1,26 @@
+services:     
+  python:
+    build:
+      context: ./app
+    container_name: python_container
+    ports:
+      -  5000:5000
+    restart: always
+    depends_on:
+      - postgresql
+  
+  postgresql:
+    container_name: postgresql_container
+    build: ./database
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - 5432:5432
+      
+
+ 
+
+
